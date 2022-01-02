@@ -1,0 +1,8 @@
+{"setting":
+        {
+                "tg_bot_token": "Telegram bot token, register one via @botfather",
+                "target_wallet": "Your wallet address",
+                "polygon_token": "A private token to access the polygonscan API. Register an acccount at polygonscan.com",
+                "target_contract": "Target contract of the crypto symbol goes here"
+        }
+}
