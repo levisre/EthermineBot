@@ -11,7 +11,7 @@ Install dependencies:
 pip install -r requirement.txt
 ```
 
-Open `setting.json`, and fill out the necessary values:
+Open `setting.json`, and fill out necessary values:
 
 | Value | Meaning |
 |-------|-----------|
@@ -29,3 +29,11 @@ Then open Telegram and search for your bot name (registered when getting token f
 | `/start` | Just say a hello sentence to ensure that the bot is working |
 | `/status` | Show current status of the miner at `ethermine.com`: active workers, current hashrate, reported hashrate, unpaid balance (ETH & USDT), network difficulty) |
 | `/balance` | Show current balance of the wallet: Current ETH amount, Current ETH/USDT exchange rate, Current USDT amount |
+
+# Note:
+
+You can supply file path to your desired config file using `-c` switch via command line. For e.g, you're having different config file named `my_config.json`, then you should use this file by following command:
+
+```bash
+python bot.py -c my_config.json
+```
