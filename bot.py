@@ -148,14 +148,24 @@ class EthermineBot:
         else:
             return None
 
-    # Get pool difficulty
+    # Get pool difficulty (Deprecated)
+    # def get_pool_status(self):
+    #     uri = "https://eth.2miners.com/api/stats"
+    #     header = {"accept": "application/json"}
+    #     response = make_request(uri, header)
+    #     data = json.loads(response)
+    #     diff_rate = int(data["nodes"][0]["difficulty"]) / 1e15
+    #     return diff_rate
+
     def get_pool_status(self):
-        uri = "https://eth.2miners.com/api/stats"
-        header = {"accept": "application/json"}
-        response = make_request(uri, header)
+        uri = "%s/%s" %(ETHERMINE_API_URI, "networkStats")
+        response = make_request(uri)
         data = json.loads(response)
-        diff_rate = int(data["nodes"][0]["difficulty"]) / 1e15
-        return diff_rate
+        if data["status"] == "OK":
+            diff_rate = int(data["data"]["difficulty"]) / 1e15
+            return diff_rate
+        else:
+            return 0
 
 
     # Get wallet balance from polygon network
@@ -182,6 +192,8 @@ class EthermineBot:
         if data["status"] == "OK":
             usd_price = float(data['data']['price']['usd'])
             return usd_price
+        else:
+            return 0
 
 
 
@@ -190,8 +202,6 @@ def main(argv):
     if len(argv) >= 2:
         args = parse_args(argv[1:]) # the first arg was the program name
         config_file = args.config_path
-    else:
-        config_file = DEFAULT_CONFIG_FILE
     my_bot = EthermineBot(config_file)
     my_bot.run()
 
